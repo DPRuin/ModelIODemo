@@ -130,8 +130,16 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
     
+    /*
+     
+     */
+    /// 通过ModelI/O加载.obj格式3d模型
     func loadFighter() {
-        <#function body#>
+        // 加载.obj文件
+        guard let url = Bundle.main.url(forResource: "Fighter", withExtension: ".obj", subdirectory: "art.scnassets") else {
+            fatalError("没有找到模型文件")
+        }
+        // let asset = 
     }
 
 }

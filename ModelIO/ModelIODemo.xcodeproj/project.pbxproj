@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7EA520B620B2D4120038E2D7 /* ModelIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModelIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA520B620B2D4120038E2D7 /* ModelIODemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModelIODemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA520B920B2D4120038E2D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EA520BB20B2D4120038E2D7 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		7EA520BD20B2D4130038E2D7 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		7EA520B720B2D4120038E2D7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7EA520B620B2D4120038E2D7 /* ModelIO.app */,
+				7EA520B620B2D4120038E2D7 /* ModelIODemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +70,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7EA520B520B2D4120038E2D7 /* ModelIO */ = {
+		7EA520B520B2D4120038E2D7 /* ModelIODemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7EA520CA20B2D4140038E2D7 /* Build configuration list for PBXNativeTarget "ModelIO" */;
+			buildConfigurationList = 7EA520CA20B2D4140038E2D7 /* Build configuration list for PBXNativeTarget "ModelIODemo" */;
 			buildPhases = (
 				7EA520B220B2D4120038E2D7 /* Sources */,
 				7EA520B320B2D4120038E2D7 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = ModelIO;
+			name = ModelIODemo;
 			productName = ModelIO;
-			productReference = 7EA520B620B2D4120038E2D7 /* ModelIO.app */;
+			productReference = 7EA520B620B2D4120038E2D7 /* ModelIODemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +102,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7EA520B120B2D4120038E2D7 /* Build configuration list for PBXProject "ModelIO" */;
+			buildConfigurationList = 7EA520B120B2D4120038E2D7 /* Build configuration list for PBXProject "ModelIODemo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +115,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7EA520B520B2D4120038E2D7 /* ModelIO */,
+				7EA520B520B2D4120038E2D7 /* ModelIODemo */,
 			);
 		};
 /* End PBXProject section */
@@ -319,7 +319,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7EA520B120B2D4120038E2D7 /* Build configuration list for PBXProject "ModelIO" */ = {
+		7EA520B120B2D4120038E2D7 /* Build configuration list for PBXProject "ModelIODemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EA520C820B2D4140038E2D7 /* Debug */,
@@ -328,7 +328,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7EA520CA20B2D4140038E2D7 /* Build configuration list for PBXNativeTarget "ModelIO" */ = {
+		7EA520CA20B2D4140038E2D7 /* Build configuration list for PBXNativeTarget "ModelIODemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EA520CB20B2D4140038E2D7 /* Debug */,

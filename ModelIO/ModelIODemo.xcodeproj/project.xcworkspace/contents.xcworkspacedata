@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ModelIO.xcodeproj">
+      location = "self:/Users/mac126/Desktop/daiCode/001mycode/ModelIODemo/ModelIO/ModelIODemo.xcodeproj">
    </FileRef>
 </Workspace>
