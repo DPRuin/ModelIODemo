@@ -158,14 +158,16 @@ class GameViewController: UIViewController {
         // 创建各种纹理材质
         let scatteringFunction = MDLScatteringFunction()
         // let scatteringFunction = MDLPhysicallyPlausibleScatteringFunction()
+        
+        /*
+         若材质出现位置错乱问题：手机删除app，项目清理一下，重新run运行就解决了
+         */
         // MDLMaterial 代表材质集合
         let material = MDLMaterial(name: "baseMaterial", scatteringFunction: scatteringFunction)
         material.setTextureProperties([MDLMaterialSemantic.baseColor : "Fighter_Diffuse_25.jpg",
                                        MDLMaterialSemantic.specular : "Fighter_Specular_25.jpg",
                                        MDLMaterialSemantic.emission : "Fighter_Illumination_25.jpg"
                                        ])
-        // MDLMaterial(name: <#T##String#>, scatteringFunction: <#T##MDLScatteringFunction#>)
-            //
         
         // 将材质应用到每个子网格上
         for submesh in mesh.submeshes! {
