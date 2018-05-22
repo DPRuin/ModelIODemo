@@ -14,12 +14,13 @@ import SceneKit.ModelIO
 
 class GameViewController: UIViewController {
 
+    var scene = SCNScene()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // create a new scene
         // let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        let scene = SCNScene()
         // 加载战机
         loadFighter()
         
@@ -141,7 +142,7 @@ class GameViewController: UIViewController {
     /// 通过ModelI/O加载.obj格式3d模型
     func loadFighter() {
         // 加载.obj文件
-        guard let url = Bundle.main.url(forResource: "Fighter", withExtension: ".obj", subdirectory: "art.scnassets") else {
+        guard let url = Bundle.main.url(forResource: "Fighter", withExtension: "obj", subdirectory: "art.scnassets") else {
             fatalError("没有找到模型文件")
         }
         
@@ -156,11 +157,15 @@ class GameViewController: UIViewController {
          */
         // 创建各种纹理材质
         let scatteringFunction = MDLScatteringFunction()
+        // let scatteringFunction = MDLPhysicallyPlausibleScatteringFunction()
         // MDLMaterial 代表材质集合
         let material = MDLMaterial(name: "baseMaterial", scatteringFunction: scatteringFunction)
         material.setTextureProperties([MDLMaterialSemantic.baseColor : "Fighter_Diffuse_25.jpg",
                                        MDLMaterialSemantic.specular : "Fighter_Specular_25.jpg",
-                                       MDLMaterialSemantic.emission : "Fighter_Illumination_25.jpg"])
+                                       MDLMaterialSemantic.emission : "Fighter_Illumination_25.jpg"
+                                       ])
+        // MDLMaterial(name: <#T##String#>, scatteringFunction: <#T##MDLScatteringFunction#>)
+            //
         
         // 将材质应用到每个子网格上
         for submesh in mesh.submeshes! {
@@ -172,11 +177,10 @@ class GameViewController: UIViewController {
         // 将ModelIO对象包装成scenekit对象，调整大小和位置
         // 需要导入SceneKit.ModelIO框架
         let node = SCNNode(mdlObject: mesh)
-        node.position = SCNVector3Make(0, -20, 0)
+        node.position = SCNVector3Make(0, 0, -50)
         node.scale = SCNVector3Make(0.05, 0.05, 0.05)
         
-        let sceneView = view as! SCNView
-        sceneView.scene?.rootNode.addChildNode(node)
+        scene.rootNode.addChildNode(node)
     }
 
 }
