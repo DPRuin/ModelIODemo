@@ -26,14 +26,14 @@ class GameViewController: UIViewController {
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
         
-        // create and add a light to the scene
+        // 全光源
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
         lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
         scene.rootNode.addChildNode(lightNode)
         
-        // create and add an ambient light to the scene
+        // 环境光
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light!.type = .ambient
@@ -53,6 +53,7 @@ class GameViewController: UIViewController {
         scnView.scene = scene
         
         // allows the user to manipulate the camera
+        // 允许用户利用各种手势来控制相机，单指旋转，双指平移，缩放手势，双击恢复原位, 默认值为false
         scnView.allowsCameraControl = true
         
         // show statistics such as fps and timing information
@@ -92,11 +93,17 @@ class GameViewController: UIViewController {
                 SCNTransaction.animationDuration = 0.5
                 
                 material.emission.contents = UIColor.black
-                
+                // material.diffuse.contents = UIImage(named: "art.scnassets/texture.png")
                 SCNTransaction.commit()
             }
-            
+            /*
+             尝试直接通过material的diffuse属性更改贴图，不成功
+             而通过shadermodifer，着色修改器就能实现更改贴图效果
+             */
             material.emission.contents = UIColor.red
+//            let image = UIImage(named: "art.scnassets/Fighter_Diffuse_25.jpg")
+//            material.diffuse.contents = image
+            
             
             SCNTransaction.commit()
         }
@@ -121,6 +128,10 @@ class GameViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
+    }
+    
+    func loadFighter() {
+        <#function body#>
     }
 
 }
