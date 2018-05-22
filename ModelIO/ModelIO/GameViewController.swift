@@ -9,6 +9,8 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import ModelIO
+import SceneKit.ModelIO
 
 class GameViewController: UIViewController {
 
@@ -16,7 +18,10 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         // create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        // let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene()
+        // 加载战机
+        loadFighter()
         
         // create and add a camera to the scene
         let cameraNode = SCNNode()
@@ -41,10 +46,10 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(ambientLightNode)
         
         // retrieve the ship node
-        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
-        
+        // let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
+        let ship = scene.rootNode.childNodes.first
         // animate the 3d object
-        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+        ship?.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
@@ -139,7 +144,57 @@ class GameViewController: UIViewController {
         guard let url = Bundle.main.url(forResource: "Fighter", withExtension: ".obj", subdirectory: "art.scnassets") else {
             fatalError("没有找到模型文件")
         }
-        // let asset = 
+        
+        // MDLAsset代表3d模型资源内容
+        let asset = MDLAsset(url: url)
+        // MDLMesh 网格数据
+        guard let mesh = asset.object(at: 0) as? MDLMesh else {
+            fatalError("没有网格数据")
+        }
+        
+        /* 散射函数 对应Lighting model
+         */
+        // 创建各种纹理材质
+        let scatteringFunction = MDLScatteringFunction()
+        // MDLMaterial 代表材质集合
+        let material = MDLMaterial(name: "baseMaterial", scatteringFunction: scatteringFunction)
+        material.setTextureProperties([MDLMaterialSemantic.baseColor : "Fighter_Diffuse_25.jpg",
+                                       MDLMaterialSemantic.specular : "Fighter_Specular_25.jpg",
+                                       MDLMaterialSemantic.emission : "Fighter_Illumination_25.jpg"])
+        
+        // 将材质应用到每个子网格上
+        for submesh in mesh.submeshes! {
+            if let submesh  = submesh as? MDLSubmesh {
+                submesh.material = material
+            }
+        }
+        
+        // 将ModelIO对象包装成scenekit对象，调整大小和位置
+        // 需要导入SceneKit.ModelIO框架
+        let node = SCNNode(mdlObject: mesh)
+        node.position = SCNVector3Make(0, -20, 0)
+        node.scale = SCNVector3Make(0.05, 0.05, 0.05)
+        
+        let sceneView = view as! SCNView
+        sceneView.scene?.rootNode.addChildNode(node)
     }
 
+}
+
+extension MDLMaterial {
+    
+    /// 设置材质
+    ///
+    /// - Parameter textures: 材质字典， MDLMaterialSemantic对应材质的唯一标识符
+    func setTextureProperties(_ textures: [MDLMaterialSemantic : String]) {
+        for (key, value) in textures {
+            
+            guard let url = Bundle.main.url(forResource: value, withExtension: nil, subdirectory: "art.scnassets") else {
+                fatalError("没有找到材质\(value)")
+            }
+            let property = MDLMaterialProperty(name: value, semantic: key, url: url)
+            // 设置材质
+            setProperty(property)
+        }
+    }
 }
